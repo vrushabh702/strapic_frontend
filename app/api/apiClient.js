@@ -20,7 +20,7 @@ export async function fetchFromStrapi(endpoint, options = {}) {
   }
 
   try {
-    const res = await fetch(`${STRAPI_BASE_URL}${endpoint}`, config)
+    const res = await fetch(`${STRAPIC_BASE_URL}${endpoint}`, config)
     if (!res.ok) {
       const errorBody = await res.text()
       throw new Error(

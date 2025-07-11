@@ -7,8 +7,11 @@ export default function DynamicCaseStudies() {
   useEffect(() => {
     async function loadData() {
       const productManagementContent = await fetchProductManagement()
-      console.log("productManagementContent", productManagementContent)
-      setProductManagement(productManagementContent)
+      console.log(
+        "productManagementContent",
+        productManagementContent.dynamicServices
+      )
+      setProductManagement(productManagementContent.dynamicServices[0])
     }
     loadData()
   }, [])
@@ -17,17 +20,18 @@ export default function DynamicCaseStudies() {
     return <div>Loading...</div>
   }
 
-  // const page_slug = productManagement.slug
-  // const title = productManagement.title
+  const page_slug = productManagement.slug
+  const title = productManagement.title
 
   const HERO = productManagement.content[0]
   const OVERVIEW = productManagement.content[1]
   const GOALS = productManagement.content[2]
-  // const SOLUTION = productManagement.content[3]
-  // const RESULT = productManagement.content[4]
-  // const IMAGE = productManagement.content[5]
-  // const CONCLUSION = productManagement.content[6]
-  console.log("GOALS", GOALS)
+  const SOLUTION = productManagement.content[3]
+  const RESULT = productManagement.content[4]
+  const IMAGE = productManagement.content[5]
+  const CONCLUSION = productManagement.content[6]
+  console.log("CONCLUSION", CONCLUSION)
+  console.log("map", IMAGE.imageGallery[0]?.formats.large.url)
   console.log("productManagement", productManagement)
 
   return (
@@ -120,48 +124,52 @@ export default function DynamicCaseStudies() {
         </section>
 
         <section className="space-y-6">
-          <h2 className="text-3xl font-semibold">Solution Provided</h2>
+          <h2 className="text-3xl font-semibold">{SOLUTION.heading}</h2>
           <p className="text-gray-300 max-w-3xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            {SOLUTION.paragraphs[0].paragraph[0].children[0].text}
           </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="p-4 border rounded">
-              <h4 className="font-medium">Card Heading 1</h4>
-              <p className="text-gray-300">Card paragraph detail.</p>
-            </div>
-            <div className="p-4 border rounded">
-              <h4 className="font-medium">Card Heading 2</h4>
-              <p className="text-gray-300">Card paragraph detail.</p>
-            </div>
-            <div className="p-4 border rounded">
-              <h4 className="font-medium">Card Heading 3</h4>
-              <p className="text-gray-300">Card paragraph detail.</p>
-            </div>
+          <h3 className="text-2xl font-semibold">{"Core Features"}</h3>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {SOLUTION.solutionCards.map((value, index) => (
+              <div
+                key={index}
+                className="p-4 border rounded flex items-center justify-center"
+              >
+                <div className="border-2 rounded-full p-4 me-5">
+                  {index + 1}
+                </div>
+                <div>
+                  <h4 className="font-medium">{value.heading}</h4>
+                  <p className="text-gray-300">{value.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
         <section className="space-y-6">
-          <p className="text-gray-300 max-w-3xl">
-            Here are the key results achieved from the project:
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {["Result 1", "Result 2", "Result 3"].map((r, i) => (
+          <h2 className="text-3xl font-semibold">{RESULT.heading}</h2>
+
+          <p className="text-gray-300 max-w-3xl">{RESULT.paragraph}</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {RESULT.result_cards.map((r, i) => (
               <div key={i} className="p-4 border rounded">
-                <h4 className="font-medium">{r}</h4>
-                <p className="text-gray-300">
-                  Description for {r.toLowerCase()}.
-                </p>
+                <div className="p-4 mb-5 border">
+                  <h4 className="font-medium">{r.heading}</h4>
+                </div>
+                <p className="text-gray-300">{r.description}.</p>
               </div>
             ))}
           </div>
         </section>
 
         <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {Array.from({ length: 6 }).map((_, i) => (
+          {IMAGE.imageGallery.map((v, i) => (
             <img
               key={i}
-              src={`/gallery-${i + 1}.jpg`}
-              alt={`Gallery ${i + 1}`}
+              src={`http://localhost:1337${v.formats.large.url}`}
+              alt={`Gallery ${v.name}`}
               className="w-full h-auto rounded-md shadow-sm"
             />
           ))}
@@ -172,23 +180,29 @@ export default function DynamicCaseStudies() {
           className="grid md:grid-cols-2 gap-8 items-center  p-8 rounded-md"
         >
           <div className="space-y-4">
-            <h2 className="text-3xl font-semibold">Ready to Start?</h2>
-            <p className="text-gray-200">
-              Contact us for this amazing project.
-            </p>
+            <h2 className="text-3xl font-semibold">{CONCLUSION.heading}</h2>
+            <p className="text-gray-200">{CONCLUSION.paragraph}</p>
             <a
-              href="/contact"
+              href={CONCLUSION.button_slug}
               className="inline-block bg-green-600 text-white py-2 px-4 rounded"
             >
-              Get in Touch
+              {CONCLUSION.button_text}
             </a>
           </div>
           <div className="space-y-4">
-            <h3 className="text-xl font-medium">What clients say</h3>
-            <p className="text-gray-200 italic">
-              “Working with this team has been phenomenal…”
-            </p>
-            <p className="font-semibold">Jane Doe, Example Inc.</p>
+            <div className="space-y-4 bg-indigo-900 p-10 border rounded-3xl">
+              <h3 className="text-xl font-medium">
+                {CONCLUSION.testimonial_heading}
+              </h3>
+              <p className="text-gray-200 italic">
+                {CONCLUSION.testimonial_description}
+              </p>
+              <span>------------</span>
+              <div className="p-3 space-y-1 bg-teal-800">
+                <p className="font-semibold">{CONCLUSION.testimonial_name}</p>
+                <p className="font-medium">{CONCLUSION.testimonial_area}</p>
+              </div>
+            </div>
           </div>
         </section>
       </main>

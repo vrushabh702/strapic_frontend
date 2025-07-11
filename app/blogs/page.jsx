@@ -1,9 +1,21 @@
+import fetchProductManagement from "@/libs/content"
 import { fetchBlogsSorted } from "../api/fetchFunctions"
+import { useState, useEffect } from "react"
 
-export default async function BlogsPages() {
-  const response = await fetchBlogsSorted()
-  const blogs = response?.data || []
-  console.log(response)
+export default function BlogsPages() {
+  const [productManagement, setProductManagement] = useState([])
+
+  useEffect(() => {
+    async function loadData() {
+      const productManagementContent = await fetchProductManagement()
+      console.log(
+        "productManagementContent",
+        productManagementContent.blogsSorted
+      )
+      setProductManagement(productManagementContent.blogsSorted[0])
+    }
+    loadData()
+  }, [])
 
   return (
     <div>
