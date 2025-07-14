@@ -2,6 +2,7 @@
 import fetchProductManagement from "@/libs/content"
 import { fetchBlogsSorted } from "../api/fetchFunctions"
 import { useState, useEffect } from "react"
+import Link from "next/link"
 
 export default function BlogsPages() {
   const [blogsContent, setBlogsContent] = useState([])
@@ -45,9 +46,15 @@ export default function BlogsPages() {
                     Category:{value.categories}{" "}
                   </p>
                 ))}
-                <p className="text-sm text-gray-800 mb-3">
+                <Link
+                  href={`/authors/${AUTHOR.author_name
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                  className="text-sm text-gray-800 mb-3 block"
+                >
                   Author: {AUTHOR.author_name}
-                </p>
+                </Link>
+
                 <p className="text-gray-800 mb-4">{AUTHOR.description}</p>
                 <a
                   href={blogsContent.slug}
