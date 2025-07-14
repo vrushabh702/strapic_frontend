@@ -20,6 +20,7 @@ export default async function fetchProductManagement() {
   const endpoints = {
     dynamicServices: `/api/dynamic-services?populate[content][populate]=*`,
     blogsSorted: `/api/blogs?pagination[page]=1&pagination[pageSize]=10&sort=title:asc`,
+    blogsContent: `/api/blogs/gwbx0qhtbjy1w77eaj1vwcit?populate=*`,
     // add more endpoints here as needed
   }
 
