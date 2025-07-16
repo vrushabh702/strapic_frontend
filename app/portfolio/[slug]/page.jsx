@@ -20,7 +20,7 @@ export default function PortfolioSlugPage({ params }) {
   useEffect(() => {
     async function loadData() {
       const productManagementContent = await fetchProductManagement()
-      console.log("productManagementContent", productManagementContent)
+      // console.log("productManagementContent", productManagementContent)
       setProductManagement(productManagementContent)
     }
     loadData()

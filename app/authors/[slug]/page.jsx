@@ -6,12 +6,10 @@ import fetchProductManagement from "@/libs/content"
 export default async function AuthorPage({ params }) {
   const BLOGS = await fetchProductManagement()
   const AUTHORS = BLOGS.blogsContent.authors[0]
-  console.log("AUTHORS", AUTHORS)
+  // console.log("AUTHORS", AUTHORS)
   // const author = AUTHORS.find((a) => a.slug === params.slug)
 
   if (!AUTHORS || AUTHORS.slug !== params.slug) {
-    console.log("not found")
-    console.log("not found authors", AUTHORS)
     notFound()
   }
 

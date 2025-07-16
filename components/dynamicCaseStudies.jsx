@@ -30,9 +30,7 @@ export default function DynamicCaseStudies() {
   const RESULT = productManagement.content[4]
   const IMAGE = productManagement.content[5]
   const CONCLUSION = productManagement.content[6]
-  console.log("CONCLUSION", CONCLUSION)
-  console.log("map", IMAGE.imageGallery[0]?.formats.large.url)
-  console.log("productManagement", productManagement)
+  // console.log("productManagement", productManagement)
 
   return (
     <>

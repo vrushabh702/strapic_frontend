@@ -8,7 +8,7 @@ export default function caseStudiesPage() {
   useEffect(() => {
     async function loadData() {
       const caseStudiesList = await fetchCaseStudies()
-      console.log("data indisde page", caseStudiesList)
+
       setCaseStudies(caseStudiesList)
     }
     loadData()
