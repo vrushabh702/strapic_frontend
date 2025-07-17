@@ -23,6 +23,7 @@ export default async function fetchProductManagement() {
     blogsContent: `/api/blogs/gwbx0qhtbjy1w77eaj1vwcit?populate=*`,
     category2: `/api/category-2s?populate=*`,
     category2Data: `/api/category-2s?populate[blogs][populate]=*&filters[blogs][id][$notNull]=true`,
+    IndividualBlogs: `/api/individual-blogs?populate[blogs][populate]=*&populate[list_block][populate]=*`,
   }
 
   const result = {}
