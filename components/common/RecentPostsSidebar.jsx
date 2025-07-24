@@ -49,7 +49,10 @@ export default function RecentPostsSidebar() {
 
         <ul className="space-y-4 text-sm">
           {recentPosts.map((post, idx) => (
-            <li key={idx} className="border-b border-white/30 pb-2">
+            <li
+              key={idx}
+              className="border-b border-white/30 pb-2 cursor-pointer"
+            >
               {post}
             </li>
           ))}
@@ -57,12 +60,18 @@ export default function RecentPostsSidebar() {
       </div>
 
       {/* Optional: Categories Section Placeholder */}
-      <div>
-        <h3 className="text-lg font-semibold mt-6">• Categories</h3>
+      <div className="mt-6">
+        <h3 className="text-lg font-semibold flex items-center gap-2 mb-4 ">
+          <span className="text-teal-400 text-xl leading-none">•</span>
+          Categories
+        </h3>
         {/* Add category items here if needed */}
         <ul className="space-y-4 text-sm">
           {category.map((post, idx) => (
-            <li key={idx} className="border-b border-white/30 pb-2">
+            <li
+              key={idx}
+              className="border-b border-white/30 pb-2 cursor-pointer"
+            >
               {post}
             </li>
           ))}

@@ -21,7 +21,7 @@ export default async function fetchProductManagement() {
     dynamicServices: `/api/dynamic-services?populate[content][populate]=*`,
     blogsSorted: `/api/blogs?pagination[page]=1&pagination[pageSize]=10&sort=title:asc`,
     blogsContent: `/api/blogs/gwbx0qhtbjy1w77eaj1vwcit?populate=*`,
-    category2: `/api/category-2s?populate=*`,
+    authorsData: `/api/authors?populate=*`,
     category2Data: `/api/category-2s?populate[blogs][populate]=*&filters[blogs][id][$notNull]=true`,
     IndividualBlogs: `/api/individual-blogs?populate[blogs][populate]=*&populate[list_block][populate]=*`,
   }

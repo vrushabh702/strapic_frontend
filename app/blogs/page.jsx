@@ -72,7 +72,7 @@ export default async function BlogsPages() {
                   {blogsContent.title} {i + 1}
                 </h2>
                 <a
-                  href={blogsContent.slug}
+                  href={`/blogs/${blogsContent.slug}`}
                   className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
                   Read More
