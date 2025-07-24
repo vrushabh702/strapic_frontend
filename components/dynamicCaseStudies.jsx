@@ -7,10 +7,7 @@ export default function DynamicCaseStudies() {
   useEffect(() => {
     async function loadData() {
       const productManagementContent = await fetchProductManagement()
-      console.log(
-        "productManagementContent",
-        productManagementContent.dynamicServices
-      )
+      console.log("productManagementContent", productManagementContent)
       setProductManagement(productManagementContent.dynamicServices[0])
     }
     loadData()

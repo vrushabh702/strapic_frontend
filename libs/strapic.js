@@ -1,3 +1,4 @@
+// this is not working api library
 "use client"
 
 const STRAPIC_BASIC_URL = process.env.NEXT_PUBLIC_STRAPI_URL

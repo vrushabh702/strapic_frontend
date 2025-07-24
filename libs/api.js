@@ -1,3 +1,5 @@
+// this is a utility function to fetch data from Strapi CMS
+// frontend/libs/api.js
 const STRAPIC_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL
 const STRAPIC_JWT_TOKEN = process.env.NEXT_PUBLIC_STRAPIC_JWT_TOKEN
 
